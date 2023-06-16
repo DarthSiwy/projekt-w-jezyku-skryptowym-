@@ -82,7 +82,7 @@ class Field:
         self.owner_baner_position = [0,0]
         self.tax = 0
         self.treasure = 0
-        self.house_number = 4
+        self.house_number = 0
         self.upgrade_price = 100
         self.downgrade_price = 50
         self.other_1 = 0
@@ -313,7 +313,7 @@ def main():
 
     # COMANDS 
     #functions.trade_menu_clear(trade_menu)
-    functions_admin.buy_all(fields,players,text_class) # BUY ALL
+    #functions_admin.buy_all(fields,players,text_class) # BUY ALL
     #functions_admin.out(fields,players,text_class) 
  
     # START MESSAGE
