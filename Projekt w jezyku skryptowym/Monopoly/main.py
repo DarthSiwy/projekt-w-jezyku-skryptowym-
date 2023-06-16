@@ -607,6 +607,7 @@ def main():
 
             # HOUSE BUY 
             if keys [pygame.K_h] and not key_h_pressed and fields[display_card.actual_card].owner == current_player and trade_menu_open == 0 : 
+                
                 if  fields[display_card.actual_card].house_number < 5 and after_roll == 1:
                     functions.buy_house(fields,players,current_player,text_class,display_card)
                 key_h_pressed = True

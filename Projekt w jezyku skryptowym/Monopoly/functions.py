@@ -251,8 +251,7 @@ def buy_house(fields,players,current_player,text_class,display_card):
     if fields[display_card.actual_card].house_number == -1:
         fields[display_card.actual_card].house_number +=1
         players[current_player].balance -= fields[display_card.actual_card].upgrade_price
-
-    if fields[display_card.actual_card].house_number in (1,5) :
+    if fields[display_card.actual_card].house_number > -1 and fields[display_card.actual_card].house_number <6: 
         if fields[display_card.actual_card].size == 3:
             if fields[display_card.actual_card].owner == fields[fields[display_card.actual_card].other_1].owner \
                 == fields[fields[display_card.actual_card].other_2].owner:
