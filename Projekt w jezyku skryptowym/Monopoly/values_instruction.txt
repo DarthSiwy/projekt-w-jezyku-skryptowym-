@@ -1,0 +1,6 @@
+number + 1
+name
+can_buy
+color
+other_1 property in color
+other_2 property in color
