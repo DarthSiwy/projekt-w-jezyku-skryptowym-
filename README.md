@@ -1,3 +1,5 @@
-# projekt-w-jezyku-skryptowym-
+# projekt-w-jezyku-skryptowym
 
-q
+enjoy
+
+
