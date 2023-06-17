@@ -1,5 +1,6 @@
 # projekt-w-jezyku-skryptowym
 
-enjoy
+YouTube link:
+https://youtu.be/_HO8hghcyFQ
 
 
