@@ -508,11 +508,15 @@ def main():
                 if players[current_player].balance-trade_menu.money > -1:
                     functions.trade_host_money(fields,players,current_player,display_card,trade_menu,get_money)
                     get_money = 0
+                    text_class.value0 = 'Press a to accept trade'
+                    text_class.value0_position = [350,840]
             if keys [pygame.K_n] and not key_n_pressed and not key_b_pressed:
                 key_n_pressed = True
                 if players[trader].balance-trade_menu.money > -1:
                     functions.trade_trader_money(fields,players,current_player,display_card,trade_menu,get_money)
                     get_money = 0
+                    text_class.value0 = 'Press a to accept trade'
+                    text_class.value0_position = [350,840]
 
             if not keys[pygame.K_n]:
                 key_n_pressed = False
@@ -627,9 +631,16 @@ def main():
         if players[current_player].prison == 0 :             
             # RANDOM
             if keys [pygame.K_r] and roll_dice_== 0 and not key_r_pressed: 
-                roll_dice_ = 1
-                dice =  functions.roll_dice() +  functions.roll_dice()
-                print("Roll: ", dice)
+                roll_dice_ = 0
+                dice = 0
+                x=0
+                while x<1:
+                    dice =  functions.roll_dice() +  functions.roll_dice()
+                    print("Roll: ", dice)
+                    if players[current_player].position+dice in (2,4,7,17,22,33,36,38,5,15,25,35):
+                        x=1
+                    else:
+                        x=1
                 functions.move_player(players[current_player],dice,fields,text_class)
                 after_roll = 1
                 ready_to_end = 1
@@ -693,7 +704,7 @@ def main():
                 
 
             # BUY
-            if keys [pygame.K_b] and after_buy==0:
+            if keys [pygame.K_b] and after_buy==0 and trade_menu_start == 0 :
                 if after_buy == 0:
                     after_buy=1
                     message=1
@@ -701,13 +712,15 @@ def main():
                     if fields[players[current_player].position].can_buy == 1 and fields[players[current_player].position].owner==44:
                         if players[current_player].balance-fields[players[current_player].position].price >0:
                             functions.buy_a_property(players[current_player],fields,text_class,players[current_player].position)
-                            #functions.buy_a_property_message(players,current_player,fields,text_class,players[current_player].position,1)
-                        #else:
-                            #functions.buy_a_property_message(players,current_player,fields,text_class,players[current_player].position,4)
-                    #elif  fields[players[current_player].position].can_buy == 1 and fields[players[current_player].position].owner!=44:
-                        #functions.buy_a_property_message(players,current_player,fields,text_class,players[current_player].position,2)                       
-                    #else:
-                        #functions.buy_a_property_message(players,current_player,fields,text_class,players[current_player].position,3)
+                            functions.buy_a_property_message(players,current_player,fields,text_class,players[current_player].position,1)
+                            
+                        else:
+                            functions.buy_a_property_message(players,current_player,fields,text_class,players[current_player].position,4)
+                    elif  fields[players[current_player].position].can_buy == 1 and fields[players[current_player].position].owner!=44:
+                        functions.buy_a_property_message(players,current_player,fields,text_class,players[current_player].position,2)                       
+                    else:
+                        functions.buy_a_property_message(players,current_player,fields,text_class,players[current_player].position,3)
+                    wait_for_continue = 1
 
             # PAYMENT RENT
             if fields[players[current_player].position].rent_0 > 0 \
@@ -718,6 +731,7 @@ def main():
                 if before_payment == 1:
                     functions.pay_rent_message(players,fields,current_player,text_class)
                     ready_to_end = 0
+                    rent_holder = fields[players[current_player].position].owner
                     wait_for_continue = 1
                     message = 1
                     before_payment = 0

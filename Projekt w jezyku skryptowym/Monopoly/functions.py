@@ -38,8 +38,8 @@ def accept_trade(fields,players,current_player,display_card,trade_menu,trader):
         fields[trade_menu.trader_card_1].owner = current_player
     if trade_menu.trader_card_2 != 0:
         fields[trade_menu.trader_card_2].owner = current_player
-    if trade_menu.trader_card_2 != 0:
-        fields[trade_menu.trader_card_2].owner = current_player
+    if trade_menu.trader_card_3 != 0:
+        fields[trade_menu.trader_card_3].owner = current_player
     if trade_menu.trader_money > 0:
         players[current_player].balance += trade_menu.trader_money
         players[int(trade_menu.trader_name)].balance -= trade_menu.trader_money
@@ -196,9 +196,11 @@ def pay_rent_message(players,fields,current_player,text_class):
             rent = fields[players[current_player].position].rent_4
         if fields[players[current_player].position].house_number == 5:
             rent = fields[players[current_player].position].rent_5
+    else: 
+        rent = 100
 
-        text_class.value0 = 'Player ' + str(current_player+1)+ ' have to pay ' + str(rent) + '$ to player ' + str(fields[players[current_player].position].owner+1) 
-        text_class.value0_position = [200,200]
+    text_class.value0 = 'Player ' + str(current_player+1)+ ' have to pay ' + str(rent) + '$ to player ' + str(fields[players[current_player].position].owner+1) 
+    text_class.value0_position = [200,200]
 
 # TAXES
 def pay_tax(players,fields,current_player,text_class):
@@ -239,12 +241,12 @@ def buy_a_property_message(players,current_player,fields,text_class,field_number
     text_class.value0_position = [200,200]
     if options == 1:
         text_class.value0 = 'Player ' + str(current_player+1) + ' bought property: ' +  str(fields[players[current_player].position].name) 
-    elif options == 2:
-        text_class.value0 = 'You cant buy this property, it has owner '#+str(fields[players[current_player].position].owner+1) 
-    elif options == 3:
-        text_class.value0 = 'You cant buy this property' 
-    else:
-        text_class.value0 = 'Not enough money' 
+    #elif options == 2:
+        #text_class.value0 = 'You cant buy this property, it has owner '#+str(fields[players[current_player].position].owner+1) 
+    #elif options == 3:
+        #text_class.value0 = 'You cant buy this property' 
+    #else:
+        #text_class.value0 = 'Not enough money' 
 
 # HOUSE BUY OR SELL
 def buy_house(fields,players,current_player,text_class,display_card):
